@@ -1,4 +1,4 @@
-﻿namespace BtcAddress {
+﻿namespace BtcAddress.Forms {
     partial class Base58Calc {
         /// <summary>
         /// Required designer variable.

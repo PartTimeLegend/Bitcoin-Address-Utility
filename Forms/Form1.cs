@@ -27,6 +27,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Security.Cryptography;
 using BtcAddress.Barcode;
+using BtcAddress.Forms;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;

@@ -61,6 +61,244 @@ namespace BtcAddress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abort generation.
+        /// </summary>
+        internal static string AddressGen_AddressGen_FormClosing_Abort_generation {
+            get {
+                return ResourceManager.GetString("AddressGen_AddressGen_FormClosing_Abort_generation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel and abandon generation in progress?.
+        /// </summary>
+        internal static string AddressGen_AddressGen_FormClosing_Cancel_and_abandon_generation_in_progress_ {
+            get {
+                return ResourceManager.GetString("AddressGen_AddressGen_FormClosing_Cancel_and_abandon_generation_in_progress_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A deterministic seed is required.  If you do not intend to create a deterministic wallet or know what one is used for, it is recommended you choose one of the other options.  An inappropriate seed can result in the unexpected theft of funds..
+        /// </summary>
+        internal static string AddressGen_btnGenerateAddresses_Click_A_deterministic_seed_is_required___If_you_do_not_intend_to_create_a_deterministic_wallet_or_know_what_one_is_used_for__it_is_recommended_you_choose_one_of_the_other_options___An_inappropriate_seed_can_result_in_the_unexpected_theft_of_funds_ {
+            get {
+                return ResourceManager.GetString(@"AddressGen_btnGenerateAddresses_Click_A_deterministic_seed_is_required___If_you_do_not_intend_to_create_a_deterministic_wallet_or_know_what_one_is_used_for__it_is_recommended_you_choose_one_of_the_other_options___An_inappropriate_seed_can_result_in_the_unexpected_theft_of_funds_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An encryption passphrase is required. Choose a different option if you don&apos;t want encrypted keys..
+        /// </summary>
+        internal static string AddressGen_btnGenerateAddresses_Click_An_encryption_passphrase_is_required__Choose_a_different_option_if_you_don_t_want_encrypted_keys_ {
+            get {
+                return ResourceManager.GetString("AddressGen_btnGenerateAddresses_Click_An_encryption_passphrase_is_required__Choos" +
+                        "e_a_different_option_if_you_don_t_want_encrypted_keys_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string AddressGen_btnGenerateAddresses_Click_Cancel {
+            get {
+                return ResourceManager.GetString("AddressGen_btnGenerateAddresses_Click_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No intermediate codes found.
+        /// </summary>
+        internal static string AddressGen_btnGenerateAddresses_Click_No_intermediate_codes_found {
+            get {
+                return ResourceManager.GetString("AddressGen_btnGenerateAddresses_Click_No_intermediate_codes_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No valid intermediate codes were found on the clipboard.  Intermediate codes are typically sent to you from someone else desiring paper wallets, or from your mobile phone.  Copy the received intermediate codes to the clipboard, and try again.  Address Generator automatically detects valid intermediate codes and ignores everything else on the clipboard.
+        /// </summary>
+        internal static string AddressGen_btnGenerateAddresses_Click_No_valid_intermediate_codes_were_found_on_the_clipboard___Intermediate_codes_are_typically_sent_to_you_from_someone_else_desiring_paper_wallets__or_from_your_mobile_phone___Copy_the_received_intermediate_codes_to_the_clipboard__and_try_again___Address_Generator_automatically_detects_valid_intermediate_codes_and_ignores_everything_else_on_the_clipboard {
+            get {
+                return ResourceManager.GetString(@"AddressGen_btnGenerateAddresses_Click_No_valid_intermediate_codes_were_found_on_the_clipboard___Intermediate_codes_are_typically_sent_to_you_from_someone_else_desiring_paper_wallets__or_from_your_mobile_phone___Copy_the_received_intermediate_codes_to_the_clipboard__and_try_again___Address_Generator_automatically_detects_valid_intermediate_codes_and_ignores_everything_else_on_the_clipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passphrase missing.
+        /// </summary>
+        internal static string AddressGen_btnGenerateAddresses_Click_Passphrase_missing {
+            get {
+                return ResourceManager.GetString("AddressGen_btnGenerateAddresses_Click_Passphrase_missing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seed missing.
+        /// </summary>
+        internal static string AddressGen_btnGenerateAddresses_Click_Seed_missing {
+            get {
+                return ResourceManager.GetString("AddressGen_btnGenerateAddresses_Click_Seed_missing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopping....
+        /// </summary>
+        internal static string AddressGen_btnGenerateAddresses_Click_Stopping___ {
+            get {
+                return ResourceManager.GetString("AddressGen_btnGenerateAddresses_Click_Stopping___", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  intermediate codes found on clipboard..
+        /// </summary>
+        internal static string AddressGen_rdoWalletType_CheckedChanged__intermediate_codes_found_on_clipboard_ {
+            get {
+                return ResourceManager.GetString("AddressGen_rdoWalletType_CheckedChanged__intermediate_codes_found_on_clipboard_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy one or more intermediate codes to the clipboard..
+        /// </summary>
+        internal static string AddressGen_rdoWalletType_CheckedChanged_Copy_one_or_more_intermediate_codes_to_the_clipboard_ {
+            get {
+                return ResourceManager.GetString("AddressGen_rdoWalletType_CheckedChanged_Copy_one_or_more_intermediate_codes_to_th" +
+                        "e_clipboard_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption passphrase or Intermediate Code.
+        /// </summary>
+        internal static string AddressGen_rdoWalletType_CheckedChanged_Encryption_passphrase_or_Intermediate_Code {
+            get {
+                return ResourceManager.GetString("AddressGen_rdoWalletType_CheckedChanged_Encryption_passphrase_or_Intermediate_Cod" +
+                        "e", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seed for deterministic generation.
+        /// </summary>
+        internal static string AddressGen_rdoWalletType_CheckedChanged_Seed_for_deterministic_generation {
+            get {
+                return ResourceManager.GetString("AddressGen_rdoWalletType_CheckedChanged_Seed_for_deterministic_generation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  generated keys?.
+        /// </summary>
+        internal static string AddressGen_timer1_Tick__generated_keys_ {
+            get {
+                return ResourceManager.GetString("AddressGen_timer1_Tick__generated_keys_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel generation.
+        /// </summary>
+        internal static string AddressGen_timer1_Tick_Cancel_generation {
+            get {
+                return ResourceManager.GetString("AddressGen_timer1_Tick_Cancel_generation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Addresses.
+        /// </summary>
+        internal static string AddressGen_timer1_Tick_Generate_Addresses {
+            get {
+                return ResourceManager.GetString("AddressGen_timer1_Tick_Generate_Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashing the passphrase....
+        /// </summary>
+        internal static string AddressGen_timer1_Tick_Hashing_the_passphrase___ {
+            get {
+                return ResourceManager.GetString("AddressGen_timer1_Tick_Hashing_the_passphrase___", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep the .
+        /// </summary>
+        internal static string AddressGen_timer1_Tick_Keep_the_ {
+            get {
+                return ResourceManager.GetString("AddressGen_timer1_Tick_Keep_the_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keys generated: .
+        /// </summary>
+        internal static string AddressGen_timer1_Tick_Keys_generated__ {
+            get {
+                return ResourceManager.GetString("AddressGen_timer1_Tick_Keys_generated__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Multiple Addresses.
+        /// </summary>
+        internal static string AddSingleAddress_btnGoMulti_Click_Add_Multiple_Addresses {
+            get {
+                return ResourceManager.GetString("AddSingleAddress_btnGoMulti_Click_Add_Multiple_Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter or paste text. Addresses and keys will be picked out..
+        /// </summary>
+        internal static string AddSingleAddress_btnGoMulti_Click_Enter_or_paste_text__Addresses_and_keys_will_be_picked_out_ {
+            get {
+                return ResourceManager.GetString("AddSingleAddress_btnGoMulti_Click_Enter_or_paste_text__Addresses_and_keys_will_be" +
+                        "_picked_out_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a key first..
+        /// </summary>
+        internal static string AddSingleAddress_button1_Click_Enter_a_key_first_ {
+            get {
+                return ResourceManager.GetString("AddSingleAddress_button1_Click_Enter_a_key_first_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unrecognized or invalid string.
+        /// </summary>
+        internal static string AddSingleAddress_button1_Click_Unrecognized_or_invalid_string {
+            get {
+                return ResourceManager.GetString("AddSingleAddress_button1_Click_Unrecognized_or_invalid_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   Base58 length: .
+        /// </summary>
+        internal static string Base58Calc_UpdateByteCounts___Base58_length__ {
+            get {
+                return ResourceManager.GetString("Base58Calc_UpdateByteCounts___Base58_length__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bytes: .
+        /// </summary>
+        internal static string Base58Calc_UpdateByteCounts_Bytes__ {
+            get {
+                return ResourceManager.GetString("Base58Calc_UpdateByteCounts_Bytes__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  bytes..
         /// </summary>
         internal static string Pbkdf2_Read__bytes_ {

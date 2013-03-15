@@ -129,4 +129,82 @@
   <data name="SCrypt_MFcrypt_Cost_must_be_a_positive_power_of_2_" xml:space="preserve">
     <value>Cost must be a positive power of 2.</value>
   </data>
+  <data name="AddressGen_rdoWalletType_CheckedChanged_Seed_for_deterministic_generation" xml:space="preserve">
+    <value>Seed for deterministic generation</value>
+  </data>
+  <data name="AddressGen_rdoWalletType_CheckedChanged_Encryption_passphrase_or_Intermediate_Code" xml:space="preserve">
+    <value>Encryption passphrase or Intermediate Code</value>
+  </data>
+  <data name="AddressGen_rdoWalletType_CheckedChanged_Copy_one_or_more_intermediate_codes_to_the_clipboard_" xml:space="preserve">
+    <value>Copy one or more intermediate codes to the clipboard.</value>
+  </data>
+  <data name="AddressGen_rdoWalletType_CheckedChanged__intermediate_codes_found_on_clipboard_" xml:space="preserve">
+    <value> intermediate codes found on clipboard.</value>
+  </data>
+  <data name="AddressGen_AddressGen_FormClosing_Cancel_and_abandon_generation_in_progress_" xml:space="preserve">
+    <value>Cancel and abandon generation in progress?</value>
+  </data>
+  <data name="AddressGen_AddressGen_FormClosing_Abort_generation" xml:space="preserve">
+    <value>Abort generation</value>
+  </data>
+  <data name="AddressGen_btnGenerateAddresses_Click_Stopping___" xml:space="preserve">
+    <value>Stopping...</value>
+  </data>
+  <data name="AddressGen_btnGenerateAddresses_Click_An_encryption_passphrase_is_required__Choose_a_different_option_if_you_don_t_want_encrypted_keys_" xml:space="preserve">
+    <value>An encryption passphrase is required. Choose a different option if you don't want encrypted keys.</value>
+  </data>
+  <data name="AddressGen_btnGenerateAddresses_Click_Passphrase_missing" xml:space="preserve">
+    <value>Passphrase missing</value>
+  </data>
+  <data name="AddressGen_btnGenerateAddresses_Click_A_deterministic_seed_is_required___If_you_do_not_intend_to_create_a_deterministic_wallet_or_know_what_one_is_used_for__it_is_recommended_you_choose_one_of_the_other_options___An_inappropriate_seed_can_result_in_the_unexpected_theft_of_funds_" xml:space="preserve">
+    <value>A deterministic seed is required.  If you do not intend to create a deterministic wallet or know what one is used for, it is recommended you choose one of the other options.  An inappropriate seed can result in the unexpected theft of funds.</value>
+  </data>
+  <data name="AddressGen_btnGenerateAddresses_Click_Seed_missing" xml:space="preserve">
+    <value>Seed missing</value>
+  </data>
+  <data name="AddressGen_btnGenerateAddresses_Click_No_valid_intermediate_codes_were_found_on_the_clipboard___Intermediate_codes_are_typically_sent_to_you_from_someone_else_desiring_paper_wallets__or_from_your_mobile_phone___Copy_the_received_intermediate_codes_to_the_clipboard__and_try_again___Address_Generator_automatically_detects_valid_intermediate_codes_and_ignores_everything_else_on_the_clipboard" xml:space="preserve">
+    <value>No valid intermediate codes were found on the clipboard.  Intermediate codes are typically sent to you from someone else desiring paper wallets, or from your mobile phone.  Copy the received intermediate codes to the clipboard, and try again.  Address Generator automatically detects valid intermediate codes and ignores everything else on the clipboard</value>
+  </data>
+  <data name="AddressGen_btnGenerateAddresses_Click_No_intermediate_codes_found" xml:space="preserve">
+    <value>No intermediate codes found</value>
+  </data>
+  <data name="AddressGen_btnGenerateAddresses_Click_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AddressGen_timer1_Tick_Generate_Addresses" xml:space="preserve">
+    <value>Generate Addresses</value>
+  </data>
+  <data name="AddressGen_timer1_Tick_Keys_generated__" xml:space="preserve">
+    <value>Keys generated: </value>
+  </data>
+  <data name="AddressGen_timer1_Tick_Keep_the_" xml:space="preserve">
+    <value>Keep the </value>
+  </data>
+  <data name="AddressGen_timer1_Tick__generated_keys_" xml:space="preserve">
+    <value> generated keys?</value>
+  </data>
+  <data name="AddressGen_timer1_Tick_Cancel_generation" xml:space="preserve">
+    <value>Cancel generation</value>
+  </data>
+  <data name="AddressGen_timer1_Tick_Hashing_the_passphrase___" xml:space="preserve">
+    <value>Hashing the passphrase...</value>
+  </data>
+  <data name="AddSingleAddress_button1_Click_Enter_a_key_first_" xml:space="preserve">
+    <value>Enter a key first.</value>
+  </data>
+  <data name="AddSingleAddress_button1_Click_Unrecognized_or_invalid_string" xml:space="preserve">
+    <value>Unrecognized or invalid string</value>
+  </data>
+  <data name="AddSingleAddress_btnGoMulti_Click_Enter_or_paste_text__Addresses_and_keys_will_be_picked_out_" xml:space="preserve">
+    <value>Enter or paste text. Addresses and keys will be picked out.</value>
+  </data>
+  <data name="AddSingleAddress_btnGoMulti_Click_Add_Multiple_Addresses" xml:space="preserve">
+    <value>Add Multiple Addresses</value>
+  </data>
+  <data name="Base58Calc_UpdateByteCounts_Bytes__" xml:space="preserve">
+    <value>Bytes: </value>
+  </data>
+  <data name="Base58Calc_UpdateByteCounts___Base58_length__" xml:space="preserve">
+    <value>  Base58 length: </value>
+  </data>
 </root>

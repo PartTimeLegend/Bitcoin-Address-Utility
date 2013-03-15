@@ -17,14 +17,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
-using System.Diagnostics;
+using BtcAddress.Properties;
 using Casascius.Bitcoin;
 
 namespace BtcAddress.Forms {
@@ -34,150 +30,190 @@ namespace BtcAddress.Forms {
         }
 
         private enum GenChoices {
-            Minikey, WIF, Encrypted, Deterministic, TwoFactor
+            Minikey, Wif, Encrypted, Deterministic, TwoFactor
         }
 
-        private GenChoices GenChoice;
+        private GenChoices _genChoice;
 
-        private bool Generating = false;
-        private bool GeneratingEnded = false;
+        private bool _generating = false;
+        private bool _generatingEnded = false;
 
-        private bool StopRequested = false;
+        private bool _stopRequested = false;
 
-        private bool PermissionToCloseWindow = false;
+        private bool _permissionToCloseWindow = false;
 
-        private bool RetainPrivateKeys = false;
+        private bool _retainPrivateKeys = false;
 
-        private string UserText;
+        private string _userText;
 
-        private int RemainingToGenerate = 0;
+        private int _remainingToGenerate = 0;
 
-        private Thread GenerationThread = null;
+        private Thread _generationThread = null;
 
         public List<KeyCollectionItem> GeneratedItems = new List<KeyCollectionItem>();
 
-        private Bip38Intermediate[] intermediatesForGeneration;
+        private Bip38Intermediate[] _intermediatesForGeneration;
 
-        private int intermediateIdx;
+        private int _intermediateIdx;
 
         private void rdoWalletType_CheckedChanged(object sender, EventArgs e) {
-            txtTextInput.Text = "";
-            txtTextInput.Visible = (rdoDeterministicWallet.Checked || rdoEncrypted.Checked);
-            lblTextInput.Visible = (rdoDeterministicWallet.Checked || rdoEncrypted.Checked || rdoTwoFactor.Checked);
-            if (rdoDeterministicWallet.Checked) {
-                lblTextInput.Text = "Seed for deterministic generation";
-            } else if (rdoEncrypted.Checked) {
-                lblTextInput.Text = "Encryption passphrase or Intermediate Code";
-            } else if (rdoTwoFactor.Checked) {
-                int icodect = ScanClipboardForIntermediateCodes().Count;
-                if (icodect == 0) {
-                    lblTextInput.Text = "Copy one or more intermediate codes to the clipboard.";
-                } else {
-                    lblTextInput.Text = icodect + " intermediate codes found on clipboard.";
+            if (sender == null) throw new ArgumentNullException("sender");
+            if (e == null) throw new ArgumentNullException("e");
+            if (txtTextInput != null)
+            {
+                txtTextInput.Text = "";
+                if (rdoEncrypted != null)
+                    if (rdoDeterministicWallet != null)
+                        txtTextInput.Visible = (rdoDeterministicWallet.Checked || rdoEncrypted.Checked);
+            }
+            if (lblTextInput != null)
+            {
+                if (rdoDeterministicWallet != null)
+                {
+                    if (rdoEncrypted != null)
+                    {
+                        if (rdoTwoFactor != null)
+                        {
+                            lblTextInput.Visible = (rdoDeterministicWallet.Checked || rdoEncrypted.Checked || rdoTwoFactor.Checked);
+                            if (rdoDeterministicWallet.Checked) {
+                                if (
+                                    Resources.AddressGen_rdoWalletType_CheckedChanged_Seed_for_deterministic_generation !=
+                                    null)
+                                    lblTextInput.Text = Resources.AddressGen_rdoWalletType_CheckedChanged_Seed_for_deterministic_generation;
+                            } else if (rdoEncrypted.Checked) {
+                                if (
+                                    Resources
+                                        .AddressGen_rdoWalletType_CheckedChanged_Encryption_passphrase_or_Intermediate_Code !=
+                                    null)
+                                    lblTextInput.Text = Resources.AddressGen_rdoWalletType_CheckedChanged_Encryption_passphrase_or_Intermediate_Code;
+                            } else if (rdoTwoFactor.Checked) {
+                                var icodect = ScanClipboardForIntermediateCodes().Count;
+                                if (icodect == 0) {
+                                    if (
+                                        Resources
+                                            .AddressGen_rdoWalletType_CheckedChanged_Copy_one_or_more_intermediate_codes_to_the_clipboard_ !=
+                                        null)
+                                        lblTextInput.Text = Resources.AddressGen_rdoWalletType_CheckedChanged_Copy_one_or_more_intermediate_codes_to_the_clipboard_;
+                                } else {
+                                    lblTextInput.Text = icodect + Resources.AddressGen_rdoWalletType_CheckedChanged__intermediate_codes_found_on_clipboard_;
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            chkRetainPrivKey.Visible = (rdoEncrypted.Checked);
+            if (rdoEncrypted != null) chkRetainPrivKey.Visible = (rdoEncrypted.Checked);
         }
 
         private void AddressGen_FormClosing(object sender, FormClosingEventArgs e) {
-            if (PermissionToCloseWindow) return;
-            if (Generating) {
-                if (MessageBox.Show("Cancel and abandon generation in progress?", "Abort generation", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No) {
+            if (sender == null) throw new ArgumentNullException("sender");
+            if (e == null) throw new ArgumentNullException("e");
+            if (_permissionToCloseWindow) return;
+            if (_generating) {
+                if (MessageBox.Show(Resources.AddressGen_AddressGen_FormClosing_Cancel_and_abandon_generation_in_progress_, Resources.AddressGen_AddressGen_FormClosing_Abort_generation, MessageBoxButtons.YesNo) == DialogResult.No) {
                     e.Cancel = true;
                 } else {
-                    StopRequested = true;
-                    if (GenerationThread.ThreadState == System.Threading.ThreadState.Running) {
-                        GenerationThread.Join();
-                        GeneratedItems.Clear();
+                    _stopRequested = true;
+                    if (_generationThread != null && _generationThread.ThreadState == ThreadState.Running)
+                    {
+                        _generationThread.Join();
+                        if (GeneratedItems != null) GeneratedItems.Clear();
                     }
                 }
             }
         }
 
         private void btnGenerateAddresses_Click(object sender, EventArgs e) {
+            if (sender == null) throw new ArgumentNullException("sender");
+            if (e == null) throw new ArgumentNullException("e");
 
-            if (Generating) {
-                StopRequested = true;
-                btnGenerateAddresses.Text = "Stopping...";
+            if (_generating) {
+                _stopRequested = true;
+                if (btnGenerateAddresses != null) btnGenerateAddresses.Text = Resources.AddressGen_btnGenerateAddresses_Click_Stopping___;
                 return;
             }
 
-            if (rdoEncrypted.Checked && txtTextInput.Text == "") {
-                MessageBox.Show("An encryption passphrase is required. Choose a different option if you don't want encrypted keys.",
-                    "Passphrase missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (txtTextInput != null && (rdoEncrypted != null && (rdoEncrypted.Checked && txtTextInput.Text == string.Empty))) {
+                MessageBox.Show(Resources.AddressGen_btnGenerateAddresses_Click_An_encryption_passphrase_is_required__Choose_a_different_option_if_you_don_t_want_encrypted_keys_,
+                    Resources.AddressGen_btnGenerateAddresses_Click_Passphrase_missing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (rdoDeterministicWallet.Checked && txtTextInput.Text == "") {
-                MessageBox.Show("A deterministic seed is required.  If you do not intend to create a deterministic " +
-                    "wallet or know what one is used for, it is recommended you choose one of the other options.  An inappropriate seed can result " +
-                    "in the unexpected theft of funds.",
-                    "Seed missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (txtTextInput != null && (rdoDeterministicWallet != null && (rdoDeterministicWallet.Checked && txtTextInput.Text == string.Empty))) {
+                MessageBox.Show(Resources.AddressGen_btnGenerateAddresses_Click_A_deterministic_seed_is_required___If_you_do_not_intend_to_create_a_deterministic_wallet_or_know_what_one_is_used_for__it_is_recommended_you_choose_one_of_the_other_options___An_inappropriate_seed_can_result_in_the_unexpected_theft_of_funds_,
+                    Resources.AddressGen_btnGenerateAddresses_Click_Seed_missing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (rdoTwoFactor.Checked) {
                 // Read the clipboard for intermediate codes
-                List<Bip38Intermediate> intermediates = ScanClipboardForIntermediateCodes();
+                var intermediates = ScanClipboardForIntermediateCodes();
                 if (intermediates.Count == 0) {
-                    MessageBox.Show("No valid intermediate codes were found on the clipboard.  Intermediate codes are typically " +
-                        "sent to you from someone else desiring paper wallets, or from your mobile phone.  Copy the received intermediate " +
-                        "codes to the clipboard, and try again.  Address Generator automatically detects valid intermediate codes and ignores " +
-                        "everything else on the clipboard", "No intermediate codes found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Resources.AddressGen_btnGenerateAddresses_Click_No_valid_intermediate_codes_were_found_on_the_clipboard___Intermediate_codes_are_typically_sent_to_you_from_someone_else_desiring_paper_wallets__or_from_your_mobile_phone___Copy_the_received_intermediate_codes_to_the_clipboard__and_try_again___Address_Generator_automatically_detects_valid_intermediate_codes_and_ignores_everything_else_on_the_clipboard, Resources.AddressGen_btnGenerateAddresses_Click_No_intermediate_codes_found, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                intermediatesForGeneration = intermediates.ToArray();
-                intermediateIdx = 0;
+                _intermediatesForGeneration = intermediates.ToArray();
+                _intermediateIdx = 0;
 
             } else {
-                intermediatesForGeneration = null;
+                _intermediatesForGeneration = null;
             }
 
 
-            GenerationThread = new Thread(new ThreadStart(GenerationThreadProcess));
-            RemainingToGenerate = (int)numGenCount.Value;
-            UserText = txtTextInput.Text;
-            RetainPrivateKeys = chkRetainPrivKey.Checked;
+            _generationThread = new Thread(GenerationThreadProcess);
+            if (numGenCount != null) _remainingToGenerate = (int)numGenCount.Value;
+            if (txtTextInput != null && txtTextInput.Text != null) _userText = txtTextInput.Text;
+            if (chkRetainPrivKey != null) _retainPrivateKeys = chkRetainPrivKey.Checked;
 
-            if (rdoDeterministicWallet.Checked) GenChoice = GenChoices.Deterministic;
-            if (rdoEncrypted.Checked) {
-                GenChoice = GenChoices.Encrypted;
+            if (rdoDeterministicWallet != null && rdoDeterministicWallet.Checked) _genChoice = GenChoices.Deterministic;
+            if (rdoEncrypted != null && rdoEncrypted.Checked) {
+                _genChoice = GenChoices.Encrypted;
                 // intermediate codes start with "passphrasek" thru "passphrases"
-                string ti = txtTextInput.Text.Trim();
-                txtTextInput.UseSystemPasswordChar = true;
+                if (txtTextInput != null && txtTextInput.Text != null)
+                {
+                    var ti = txtTextInput.Text.Trim();
+                }
+                if (txtTextInput != null) txtTextInput.UseSystemPasswordChar = true;
             }
-            if (rdoMiniKeys.Checked) GenChoice = GenChoices.Minikey;
-            if (rdoRandomWallet.Checked) GenChoice = GenChoices.WIF;
+            if (rdoMiniKeys != null && rdoMiniKeys.Checked) _genChoice = GenChoices.Minikey;
+            if (rdoRandomWallet != null && rdoRandomWallet.Checked) _genChoice = GenChoices.Wif;
             if (rdoTwoFactor.Checked) {
-                GenChoice = GenChoices.TwoFactor;
+                _genChoice = GenChoices.TwoFactor;
             }
 
             timer1.Interval = 250;
             timer1.Enabled = true;
-            Generating = true;
-            GeneratingEnded = false;
-            StopRequested = false;
-            btnGenerateAddresses.Text = "Cancel";
+            _generating = true;
+            _generatingEnded = false;
+            _stopRequested = false;
+            btnGenerateAddresses.Text = Resources.AddressGen_btnGenerateAddresses_Click_Cancel;
             SetControlsEnabled(false);
             toolStripProgressBar1.Visible = true;
-            GenerationThread.Start();
+            _generationThread.Start();
 
         }
 
         private void SetControlsEnabled(bool enabled) {
-            foreach (Control c in this.Controls) {
-                if (c is TextBox) {
-                    ((TextBox)c).Enabled = enabled;
-                } else if (c is NumericUpDown) {
-                    ((NumericUpDown)c).Enabled = enabled;
+            foreach (var c in Controls)
+            {
+                var box = c as TextBox;
+                if (box != null) {
+                    box.Enabled = enabled;
+                } else
+                {
+                    var down = c as NumericUpDown;
+                    if (down != null) {
+                        down.Enabled = enabled;
+                    }
                 }
             }
-            foreach (Control c in groupBox1.Controls) {
-                if (c is RadioButton) {
-                    ((RadioButton)c).Enabled = enabled;
+            foreach (var c in groupBox1.Controls)
+            {
+                var button = c as RadioButton;
+                if (button != null) {
+                    button.Enabled = enabled;
                 }
             }
-
         }
 
         /// <summary>
@@ -186,96 +222,108 @@ namespace BtcAddress.Forms {
         private void GenerationThreadProcess() {
 
             Bip38Intermediate intermediate = null;
-            if (GenChoice == GenChoices.Encrypted) {
-                intermediate = new Bip38Intermediate(UserText, Bip38Intermediate.Interpretation.Passphrase);                
+            if (_genChoice == GenChoices.Encrypted) {
+                if (_userText != null)
+                    intermediate = new Bip38Intermediate(_userText, Bip38Intermediate.Interpretation.Passphrase);
             }
 
-            int detcount = 1;
+            var detcount = 1;
 
-            while (RemainingToGenerate > 0 && StopRequested == false) {
+            while (_remainingToGenerate > 0 && _stopRequested == false) {
                 KeyCollectionItem newitem = null;
-                switch (GenChoice) {
+
+                Bip38KeyPair ekp = null;
+                switch (_genChoice) {
                     case GenChoices.Minikey:
-                        MiniKeyPair mkp = MiniKeyPair.CreateRandom(ExtraEntropy.GetEntropy());
-                        string s = mkp.AddressBase58; // read the property to entice it to compute everything
+                        var mkp = MiniKeyPair.CreateRandom(ExtraEntropy.GetEntropy());
+                        if (mkp == null) throw new ArgumentNullException("mkp");
                         newitem = new KeyCollectionItem(mkp);
                         break;
-                    case GenChoices.WIF:
-                        KeyPair kp = KeyPair.Create(ExtraEntropy.GetEntropy());
-                        s = kp.AddressBase58;
+                    case GenChoices.Wif:
+                        var kp = KeyPair.Create(ExtraEntropy.GetEntropy());
+                        if (kp == null) throw new ArgumentNullException("kp");
                         newitem = new KeyCollectionItem(kp);
                         break;
                     case GenChoices.Deterministic:
-                        kp = KeyPair.CreateFromString(UserText + detcount);
+                        kp = KeyPair.CreateFromString(_userText + detcount);
                         detcount++;
-                        s = kp.AddressBase58;
-                        newitem = new KeyCollectionItem(kp);
+                        if (kp != null) newitem = new KeyCollectionItem(kp);
                         break;
                     case GenChoices.Encrypted:
-                        Bip38KeyPair ekp = new Bip38KeyPair(intermediate);
-                        newitem = new KeyCollectionItem(ekp);
+                        if (intermediate != null)
+                        {
+                            ekp = new Bip38KeyPair(intermediate);
+                            newitem = new KeyCollectionItem(ekp);
+                        }
                         break;
                     case GenChoices.TwoFactor:
-                        ekp = new Bip38KeyPair(intermediatesForGeneration[intermediateIdx++]);
-                        if (intermediateIdx >= intermediatesForGeneration.Length) intermediateIdx = 0;
+                        if (_intermediatesForGeneration != null)
+                        {
+                            if (_intermediatesForGeneration.Length > _intermediateIdx++)
+                                ekp = new Bip38KeyPair(_intermediatesForGeneration[_intermediateIdx++]);
+                            if (_intermediateIdx >= _intermediatesForGeneration.Length) _intermediateIdx = 0;
+                        }
                         newitem = new KeyCollectionItem(ekp);
+                        
                         break;
                 }
 
                 lock (GeneratedItems) {
                     GeneratedItems.Add(newitem);
-                    RemainingToGenerate--;
+                    _remainingToGenerate--;
                 }
             }
-            GeneratingEnded = true;
+            _generatingEnded = true;
         }
 
         private List<Bip38Intermediate> ScanClipboardForIntermediateCodes() {
-            string cliptext = Clipboard.GetText(TextDataFormat.UnicodeText);
-            List<object> objects = StringInterpreter.InterpretBatch(cliptext);
-            List<Bip38Intermediate> intermediates = new List<Bip38Intermediate>(from c in objects where c is Bip38Intermediate select c as Bip38Intermediate);
+            var cliptext = Clipboard.GetText(TextDataFormat.UnicodeText);
+            var objects = StringInterpreter.InterpretBatch(cliptext);
+            var intermediates = new List<Bip38Intermediate>(
+                objects.OfType<Bip38Intermediate>());
             return intermediates;
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
-            if (GeneratingEnded) {
-                Generating = false;
-                GeneratingEnded = false;
+            if (_generatingEnded) {
+                _generating = false;
+                _generatingEnded = false;
                 toolStripProgressBar1.Value = 0;
                 toolStripProgressBar1.Visible = false;
-                toolStripStatusLabel1.Text = "";
+                toolStripStatusLabel1.Text = string.Empty;
 
-                btnGenerateAddresses.Text = "Generate Addresses";
+                btnGenerateAddresses.Text = Resources.AddressGen_timer1_Tick_Generate_Addresses;
                 timer1.Enabled = false;
                 SetControlsEnabled(true);
-                if (StopRequested == false) {
-                    PermissionToCloseWindow = true;
-                    this.Close();
+                if (_stopRequested == false) {
+                    _permissionToCloseWindow = true;
+                    Close();
                 } else if (GeneratedItems.Count > 0) {
-                    toolStripStatusLabel1.Text = "Keys generated: " + GeneratedItems.Count;
-                    if (PermissionToCloseWindow) {
-                        this.Close();
+                    toolStripStatusLabel1.Text = Resources.AddressGen_timer1_Tick_Keys_generated__ + GeneratedItems.Count;
+                    if (_permissionToCloseWindow) {
+                        Close();
                         return;
-                    } else if (MessageBox.Show("Keep the " + GeneratedItems.Count + " generated keys?", "Cancel generation", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No) {
+                    } else if (MessageBox.Show(Resources.AddressGen_timer1_Tick_Keep_the_ + GeneratedItems.Count + Resources.AddressGen_timer1_Tick__generated_keys_, Resources.AddressGen_timer1_Tick_Cancel_generation, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No) {
                         GeneratedItems.Clear();
                     }
-                    PermissionToCloseWindow = true;
-                    this.Close();
+                    _permissionToCloseWindow = true;
+                    Close();
                 }
                 return;
             }
 
-            if (Generating) {
-                int generated = 0;
-                int totaltogenerate = 0;
-                lock (GeneratedItems) {
-                    generated = GeneratedItems.Count;
-                    totaltogenerate = generated + RemainingToGenerate;
-                }
-                if (generated == 0 && rdoEncrypted.Checked) {
-                    toolStripStatusLabel1.Text = "Hashing the passphrase...";
+            if (_generating) {
+                var generated = 0;
+                var totaltogenerate = 0;
+                if (GeneratedItems != null)
+                    lock (GeneratedItems) {
+                        generated = GeneratedItems.Count;
+                        totaltogenerate = generated + _remainingToGenerate;
+                    }
+                if (rdoEncrypted != null && (generated == 0 && rdoEncrypted.Checked)) {
+                    toolStripStatusLabel1.Text = Resources.AddressGen_timer1_Tick_Hashing_the_passphrase___;
                 } else {
-                    toolStripStatusLabel1.Text = "Keys generated: " + generated;
+                    toolStripStatusLabel1.Text = Resources.AddressGen_timer1_Tick_Keys_generated__ + generated;
                     toolStripProgressBar1.Maximum = totaltogenerate;
                     toolStripProgressBar1.Value = generated;
                 }

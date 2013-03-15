@@ -16,13 +16,8 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using BtcAddress.Properties;
 using Casascius.Bitcoin;
 
 namespace BtcAddress.Forms {
@@ -34,35 +29,34 @@ namespace BtcAddress.Forms {
         public object Result;
 
         private void button1_Click(object sender, EventArgs e) {
-            if (textBox1.Text == "") {
-                MessageBox.Show("Enter a key first.");
+            if (textBox1.Text == string.Empty) {
+                MessageBox.Show(Resources.AddSingleAddress_button1_Click_Enter_a_key_first_);
                 return;
             }
 
             if (btnGoMulti.Visible)
             {
-                Result = StringInterpreter.Interpret(textBox1.Text);
+                if (textBox1.Text != null) Result = StringInterpreter.Interpret(textBox1.Text);
                 if (Result == null)
                 {
-                    MessageBox.Show("Unrecognized or invalid string");
+                    MessageBox.Show(Resources.AddSingleAddress_button1_Click_Unrecognized_or_invalid_string);
                 }
                 else
                 {
-                    this.Close();
+                    Close();
                 }
             }
             else
             {
-                Result = StringInterpreter.InterpretBatch(textBox1.Text);
+                if (textBox1.Text != null) Result = StringInterpreter.InterpretBatch(textBox1.Text);
                 if (Result == null)
                 {
-                    MessageBox.Show("Unrecognized or invalid string");
+                    MessageBox.Show(Resources.AddSingleAddress_button1_Click_Unrecognized_or_invalid_string);
                 }
                 else
                 {
-                    this.Close();
+                    Close();
                 }
-
             }
         }
 
@@ -70,10 +64,10 @@ namespace BtcAddress.Forms {
             textBox1.Focus();
             textBox1.Multiline = true;
             btnGoMulti.Visible = false;
-            lblEnterWhat.Text = "Enter or paste text. Addresses and keys will be picked out.";
-            this.Text = "Add Multiple Addresses";
+            lblEnterWhat.Text = Resources.AddSingleAddress_btnGoMulti_Click_Enter_or_paste_text__Addresses_and_keys_will_be_picked_out_;
+            this.Text = Resources.AddSingleAddress_btnGoMulti_Click_Add_Multiple_Addresses;
             if (this.Height < 500) this.Height = 500;
-            this.AcceptButton = null;
+            AcceptButton = null;
         }
 
 

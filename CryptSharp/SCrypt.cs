@@ -96,22 +96,22 @@ namespace BtcAddress.CryptSharp {
             Helper.CheckRange("parallel", parallel, 1, int.MaxValue / mfLen);
             Helper.CheckRange("maxThreads", (int)maxThreads, 1, int.MaxValue);
 
-            var B = new byte[parallel * mfLen];
-            if (HmacCallback != null) Pbkdf2.ComputeKey(P, S, 1, HmacCallback, HLen, B);
+            var b = new byte[parallel * mfLen];
+            if (HmacCallback != null) Pbkdf2.ComputeKey(P, S, 1, HmacCallback, HLen, b);
 
-            var b0 = new uint[B.Length / 4];
+            var b0 = new uint[b.Length / 4];
             for (var i = 0; i < b0.Length; i++)
             {
-                if (b0.Length > i) b0[i] = Helper.BytesToUInt32Le(B, i * 4);
+                if (b0.Length > i) b0[i] = Helper.BytesToUInt32Le(b, i * 4);
             } // code is easier with uint[]
             ThreadSMixCalls(b0, mfLen, cost, blockSize, parallel, (int)maxThreads);
             for (int i = 0; i < b0.Length; i++)
             {
-                if (b0.Length > i) Helper.UInt32ToBytesLe(b0[i], B, i * 4);
+                if (b0.Length > i) Helper.UInt32ToBytesLe(b0[i], b, i * 4);
             }
             Clear(b0);
 
-            return B;
+            return b;
         }
 
         static void ThreadSMixCalls(uint[] b0, int mfLen,
