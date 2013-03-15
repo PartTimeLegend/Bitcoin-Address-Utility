@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using BtcAddress.Barcode;
 using ThoughtWorks.QRCode.Codec;
 using System.Security.Cryptography;
 using System.IO;
@@ -147,7 +148,7 @@ namespace BtcAddress {
 
 
                 // draw the address QR code
-                using (Bitmap b2 = QR.EncodeQRCode(address)) {
+                using (Bitmap b2 = Qr.EncodeQrCode(address)) {
                     e.Graphics.DrawImage(b2, thiscodeX + 100, thiscodeY, 100, 100);
                 }
             
@@ -158,7 +159,7 @@ namespace BtcAddress {
 
                 if (confcode != "") {
                     // Print the confirmation QR code
-                    using (Bitmap b = QR.EncodeQRCode(confcode)) {
+                    using (Bitmap b = Qr.EncodeQrCode(confcode)) {
                         e.Graphics.DrawImage(b, thiscodeX + 600, thiscodeY, 100, 100);
 
                         string whattoprint = "Confirmation code:\r\n" + confcode.Substring(0, 38) + "\r\n" + confcode.Substring(38);

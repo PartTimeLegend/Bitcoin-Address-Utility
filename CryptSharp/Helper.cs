@@ -18,15 +18,17 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #endregion
 
 using System;
-using System.Diagnostics;
 
-namespace CryptSharp.Utility {
+namespace BtcAddress.CryptSharp {
     static class Helper {
         public static void CheckBounds<T>(string valueName,
             T[] value, int offset, int count) {
+            if (valueName == null) throw new ArgumentNullException("valueName");
+            if (value == null) throw new ArgumentNullException("value");
             CheckNull(valueName, value);
-            if (offset < 0 || count < 0 || count > value.Length - offset) { throw new ArgumentOutOfRangeException(); }
-        }
+            if (offset < 0 || count < 0 || count > value.Length - offset) return;
+            throw new ArgumentOutOfRangeException();
+            }
 
         public static void CheckNull<T>(string valueName, T value) {
             if (value == null) {
@@ -36,7 +38,9 @@ namespace CryptSharp.Utility {
         }
 
         public static void CheckRange(string valueName,
-            int value, int minimum, int maximum) {
+            int value, int minimum, int maximum)
+        {
+            if (valueName == null) throw new ArgumentNullException("valueName");
             if (value < minimum || value > maximum) {
                 throw new ArgumentOutOfRangeException(valueName,
                     string.Format("Value must be in the range [{0}, {1}].",
@@ -46,6 +50,8 @@ namespace CryptSharp.Utility {
 
         public static void CheckRange<T>(string valueName,
             T[] value, int minimum, int maximum) {
+            if (valueName == null) throw new ArgumentNullException("valueName");
+            if (value == null) throw new ArgumentNullException("value");
             CheckNull(valueName, value);
             if (value.Length < minimum || value.Length > maximum) {
                 throw new ArgumentOutOfRangeException(valueName,
@@ -54,34 +60,43 @@ namespace CryptSharp.Utility {
             }
         }
 
-        public static uint BytesToUInt32(byte[] bytes, int offset) {
-            return
-                (uint)bytes[offset + 0] << 24 |
-                (uint)bytes[offset + 1] << 16 |
-                (uint)bytes[offset + 2] << 8 |
-                (uint)bytes[offset + 3];
+        public static uint BytesToUInt32(byte[] bytes, int offset)
+        {
+            if (bytes == null) throw new ArgumentNullException("bytes");
+            if ((bytes.Length <= offset + 0 || bytes.Length <= offset + 1 || bytes.Length <= offset + 2) &&
+                bytes.Length > offset + 3)
+                return
+                    (uint) bytes[offset + 0] << 24 |
+                    (uint) bytes[offset + 1] << 16 |
+                    (uint) bytes[offset + 2] << 8 |
+                    bytes[offset + 3];
         }
 
-        public static uint BytesToUInt32LE(byte[] bytes, int offset) {
-            return
-                (uint)bytes[offset + 3] << 24 |
-                (uint)bytes[offset + 2] << 16 |
-                (uint)bytes[offset + 1] << 8 |
-                (uint)bytes[offset + 0];
+        public static uint BytesToUInt32Le(byte[] bytes, int offset)
+        {
+            if (bytes == null) throw new ArgumentNullException("bytes");
+            if (bytes.Length > offset + 3 && bytes.Length > offset + 2 && bytes.Length > offset + 1)
+                return
+                    (uint) bytes[offset + 3] << 24 |
+                    (uint) bytes[offset + 2] << 16 |
+                    (uint) bytes[offset + 1] << 8 |
+                    bytes[offset + 0];
         }
 
         public static void UInt32ToBytes(uint value, byte[] bytes, int offset) {
-            bytes[offset + 0] = (byte)(value >> 24);
-            bytes[offset + 1] = (byte)(value >> 16);
-            bytes[offset + 2] = (byte)(value >> 8);
+            if (bytes == null) throw new ArgumentNullException("bytes");
+            if (bytes.Length > offset + 0) bytes[offset + 0] = (byte)(value >> 24);
+            if (bytes.Length > offset + 1) bytes[offset + 1] = (byte)(value >> 16);
+            if (bytes.Length > offset + 2) bytes[offset + 2] = (byte)(value >> 8);
             bytes[offset + 3] = (byte)(value);
         }
 
-        public static void UInt32ToBytesLE(uint value, byte[] bytes, int offset) {
-            bytes[offset + 3] = (byte)(value >> 24);
-            bytes[offset + 2] = (byte)(value >> 16);
-            bytes[offset + 1] = (byte)(value >> 8);
-            bytes[offset + 0] = (byte)(value);
+        public static void UInt32ToBytesLe(uint value, byte[] bytes, int offset) {
+            if (bytes == null) throw new ArgumentNullException("bytes");
+            if (bytes.Length > offset + 3) bytes[offset + 3] = (byte)(value >> 24);
+            if (bytes.Length > offset + 2) bytes[offset + 2] = (byte)(value >> 16);
+            if (bytes.Length > offset + 1) bytes[offset + 1] = (byte)(value >> 8);
+            if (bytes.Length > offset + 0) bytes[offset + 0] = (byte)(value);
         }
     }
 }

@@ -114,4 +114,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Pbkdf2_Read_Can_only_return_" xml:space="preserve">
+    <value>Can only return </value>
+  </data>
+  <data name="Pbkdf2_Read__bytes_" xml:space="preserve">
+    <value> bytes.</value>
+  </data>
+  <data name="Pbkdf2_Seek_Unknown_seek_type_" xml:space="preserve">
+    <value>Unknown seek type.</value>
+  </data>
+  <data name="Pbkdf2_Seek_Seeking_before_the_stream_start_" xml:space="preserve">
+    <value>Seeking before the stream start.</value>
+  </data>
+  <data name="SCrypt_MFcrypt_Cost_must_be_a_positive_power_of_2_" xml:space="preserve">
+    <value>Cost must be a positive power of 2.</value>
+  </data>
 </root>

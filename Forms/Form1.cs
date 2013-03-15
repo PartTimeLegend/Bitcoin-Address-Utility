@@ -26,6 +26,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading;
 using System.Security.Cryptography;
+using BtcAddress.Barcode;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
@@ -725,7 +726,7 @@ namespace BtcAddress {
 
         private void copyPrivateKeyQRMenuItem_Click(object sender, EventArgs e) {
             string toencode = txtPrivWIF.Text;
-            Bitmap b = QR.EncodeQRCode(toencode);
+            Bitmap b = Qr.EncodeQrCode(toencode);
             if (b == null) {
                 MessageBox.Show("Enter or create a valid private key first.");
                 return;
@@ -737,7 +738,7 @@ namespace BtcAddress {
 
         private void copyMinikeyQRMenuItem_Click(object sender, EventArgs e) {
             string toencode = txtMinikey.Text;
-            Bitmap b = QR.EncodeQRCode(toencode);
+            Bitmap b = Qr.EncodeQrCode(toencode);
             if (b == null) {
                 MessageBox.Show("Enter or create a valid minikey first.");
                 return;
@@ -749,7 +750,7 @@ namespace BtcAddress {
 
         private void copyAddressQRMenuItem_Click(object sender, EventArgs e) {
             string toencode = txtBtcAddr.Text;
-            Bitmap b = QR.EncodeQRCode(toencode);
+            Bitmap b = Qr.EncodeQrCode(toencode);
             if (b == null) {
                 MessageBox.Show("Enter or create a valid address first.");
                 return;
@@ -760,7 +761,7 @@ namespace BtcAddress {
 
         private void copyPublicHexQRMenuItem_Click(object sender, EventArgs e) {
             string toencode = txtPubHex.Text.Replace(" ","");
-            Bitmap b = QR.EncodeQRCode(toencode);
+            Bitmap b = Qr.EncodeQrCode(toencode);
             if (b == null) {
                 MessageBox.Show("Enter or create a valid public key first.");
                 return;

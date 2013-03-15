@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using BtcAddress.CryptSharp;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;

@@ -1,0 +1,1 @@
+C:\Users\Antony\Documents\GitHub\Bitcoin-Address-Utility\bin\Debug\BtcAddress.exe.config

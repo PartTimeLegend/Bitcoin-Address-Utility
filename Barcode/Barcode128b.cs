@@ -16,19 +16,17 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace BtcAddress {
-    public class Barcode128b {
+namespace BtcAddress.Barcode {
+    public class Barcode128B {
         /// <summary>
         /// There are 107 total patterns.  Patterns 0-94 correspond to ASCII codes 32-126.
         /// Patterns 104 and 106 are the start and stop codes for 128-B.
         /// Each pattern is the width of bar-space-bar-space-bar-space (+bar for the end pattern 106).
         /// </summary>
-        private static string[] patterns =  {"212222","222122","222221","121223","121322","131222","122213","122312","132212",
+        private static readonly string[] Patterns =  {"212222","222122","222221","121223","121322","131222","122213","122312","132212",
                                               "221213","221312","231212","112232","122132","122231","113222","123122","123221",
 "223211","221132","221231","213212","223112","312131","311222","321122","321221","312212","322112",
 "322211","212123","212321","232121","111323","131123","131321","112313","132113","132311","211313",
@@ -42,62 +40,68 @@ namespace BtcAddress {
 
 
 
-        private static string getPatternsForMessage(string message) {
-            StringBuilder rv = new StringBuilder();
+        private static string GetPatternsForMessage(string message) {
+            if (message == null) throw new ArgumentNullException("message");
+            var rv = new StringBuilder();
             
             // add in the start code for 128-B, as well as pre-seed the checksum
-            rv.Append(patterns[104]);
-            int runningChecksum = 104;
-            int posNumber = 1;
+            if (Patterns != null) if (Patterns.Length > 104) rv.Append(Patterns[104]);
+            var runningChecksum = 104;
+            var posNumber = 1;
 
-            foreach (char c in message.ToCharArray()) {
-                if (c >= ' ' && c <= '~') { // chars 32 thru 126
-                    int sym = c - 0x20;
-                    rv.Append(patterns[sym]);
-                    runningChecksum = (runningChecksum + sym * posNumber) % 103;
-                    posNumber++;
-                }
+            foreach (var c in message.ToCharArray()) {
+                if (c < ' ' || c > '~') continue; // chars 32 thru 126
+                var sym = c - 32;
+                if (Patterns != null) if (Patterns.Length > sym) rv.Append(Patterns[sym]);
+                runningChecksum = (runningChecksum + sym * posNumber) % 103;
+                posNumber++;
             }
 
             // append the checksum and the stop code
-            rv.Append(patterns[runningChecksum]);
-            rv.Append(patterns[106]);
+            if (Patterns != null)
+            {
+                if (Patterns.Length > runningChecksum) rv.Append(Patterns[runningChecksum]);
+                rv.Append(Patterns[106]);
+            }
             return rv.ToString();
         }
 
         public static Bitmap GetBarcode(string message) {
+            if (message == null) throw new ArgumentNullException("message");
 
-            int pixelspermodule = 1;
-            int margininmodules = 12;
-            int heightinmodules = 30;
+            const int pixelsPerModule = 1;
+            const int marginInModules = 12;
+            const int heightInModules = 30;
 
-            string pattern = getPatternsForMessage(message);
+            var pattern = GetPatternsForMessage(message);
 
             // get number of modules.  Pretty simple, just add up all the digits in the pattern.
-            int modulecount=0;
-            foreach (char c in pattern.ToCharArray()) modulecount += (c - '0');
+            var moduleCount=0;
+            if (pattern != null) foreach (var c in pattern.ToCharArray()) moduleCount += c - '0';
 
-            int neededWidth = pixelspermodule * (margininmodules + margininmodules + modulecount);
-            int neededHeight = pixelspermodule * heightinmodules;
-            Bitmap b = new Bitmap(neededWidth + 1, neededHeight + 1);
-            SolidBrush brush = new SolidBrush(Color.White);
-
-            Graphics gr = Graphics.FromImage(b);
+            var neededWidth = pixelsPerModule * (marginInModules + marginInModules + moduleCount);
+            const int neededHeight = pixelsPerModule * heightInModules;
+            var b = new Bitmap(neededWidth + 1, neededHeight + 1);
+            using (var brush = new SolidBrush(Color.White))
+            {
+                var gr = Graphics.FromImage(b);
             
-            // start with a white background
-            gr.FillRectangle(brush, new Rectangle(0, 0, neededWidth, neededHeight));
+                // start with a white background
+                gr.FillRectangle(brush, new Rectangle(0, 0, neededWidth, neededHeight));
 
-            brush.Color = Color.Black;
+                brush.Color = Color.Black;
 
-            int currentmodule = margininmodules;
-            bool nowBlack = true;
-            foreach (char c in pattern.ToCharArray()) {
-                int modulewidth = (c - '0');
-                if (nowBlack) {
-                    gr.FillRectangle(brush, currentmodule * pixelspermodule, 0, modulewidth * pixelspermodule, neededHeight);
-                }
-                nowBlack = !nowBlack;
-                currentmodule += modulewidth;
+                var currentModule = marginInModules;
+                var nowBlack = true;
+                if (pattern != null)
+                    foreach (var c in pattern.ToCharArray()) {
+                        var moduleWidth = (c - '0');
+                        if (nowBlack) {
+                            gr.FillRectangle(brush, currentModule * pixelsPerModule, 0, moduleWidth * pixelsPerModule, neededHeight);
+                        }
+                        nowBlack = !nowBlack;
+                        currentModule += moduleWidth;
+                    }
             }
 
             return b;

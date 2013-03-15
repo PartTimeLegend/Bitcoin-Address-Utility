@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using BtcAddress.Barcode;
 using ThoughtWorks.QRCode.Codec;
 using System.Security.Cryptography;
 using System.IO;
@@ -145,7 +146,7 @@ namespace BtcAddress {
                 }
 
                 // draw the address QR code
-                using (Bitmap b2 = QR.EncodeQRCode(address)) {
+                using (Bitmap b2 = Qr.EncodeQrCode(address)) {
                     e.Graphics.DrawImage(b2, thiscodeX + 80, thiscodeY + 10, 50, 50);
                 }
 

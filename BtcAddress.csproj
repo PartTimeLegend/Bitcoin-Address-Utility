@@ -45,7 +45,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto">
-      <HintPath>.\BouncyCastle.Crypto.dll</HintPath>
+      <HintPath>packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -238,6 +239,7 @@
       <DependentUpon>Walletgen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

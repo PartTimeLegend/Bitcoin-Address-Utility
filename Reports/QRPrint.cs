@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using BtcAddress.Barcode;
 using ThoughtWorks.QRCode.Codec;
 using System.Security.Cryptography;
 using System.IO;
@@ -168,7 +169,7 @@ namespace BtcAddress {
                     }
                 }
 
-                Bitmap b = QR.EncodeQRCode(privkey);
+                Bitmap b = Qr.EncodeQrCode(privkey);
 
                 if (PrintMode == PrintModes.PsyBanknote) {
 
@@ -196,7 +197,7 @@ namespace BtcAddress {
                         scalefactor * 147F);
                     
                     // draw the public QR
-                    Bitmap b2 = QR.EncodeQRCode(k.GetAddressBase58());
+                    Bitmap b2 = Qr.EncodeQrCode(k.GetAddressBase58());
                     e.Graphics.DrawImage(b2,
                         leftOffset + scalefactor * (float)(thiscodeX + 39),
                         scalefactor * (float)(thiscodeY + 90), scalefactor * 128F, scalefactor * 128F);
@@ -243,7 +244,7 @@ namespace BtcAddress {
                     }
 
                     if (PrintMiniKeysWith1DBarcode && k.Address is MiniKeyPair) {
-                        Bitmap barcode1d = Barcode128b.GetBarcode(k.PrivateKey);
+                        Bitmap barcode1d = Barcode128B.GetBarcode(k.PrivateKey);
                         float aspect1d = (float)barcode1d.Width / (float)barcode1d.Height;
                         e.Graphics.DrawImage(barcode1d, leftOffset + scalefactor * (float)(thiscodeX + 231F),
                             scalefactor * (float)(thiscodeY + 293),
