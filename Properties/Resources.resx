@@ -207,4 +207,49 @@
   <data name="Base58Calc_UpdateByteCounts___Base58_length__" xml:space="preserve">
     <value>  Base58 length: </value>
   </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_Passphrase_is_required_" xml:space="preserve">
+    <value>Passphrase is required.</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_Passphrase_required" xml:space="preserve">
+    <value>Passphrase required</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_Confirmation_code_is_required_" xml:space="preserve">
+    <value>Confirmation code is required.</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_Confirmation_code_required" xml:space="preserve">
+    <value>Confirmation code required</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___It_has_the_right_prefix__but_doesn_t_contain_valid_confirmation_data___Possible_typo_or_incomplete_" xml:space="preserve">
+    <value>This is not a valid confirmation code.  It has the right prefix, but doesn't contain valid confirmation data.  Possible typo or incomplete?</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_Invalid_confirmation_code" xml:space="preserve">
+    <value>Invalid confirmation code</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code_" xml:space="preserve">
+    <value>This is not a valid confirmation code.</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_What_you_provided_contains_a_private_key__not_just_a_confirmation__Confirmation_is_successful__and_with_this_correct_passphrase__you_are_also_able_to_spend_the_funds_from_the_address_" xml:space="preserve">
+    <value>What you provided contains a private key, not just a confirmation. Confirmation is successful, and with this correct passphrase, you are also able to spend the funds from the address.</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_This_is_actually_a_private_key" xml:space="preserve">
+    <value>This is actually a private key</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___It_looks_like_an_encrypted_private_key___Decryption_was_attempted_but_the_passphrase_couldn_t_decrypt_it" xml:space="preserve">
+    <value>This is not a valid confirmation code.  It looks like an encrypted private key.  Decryption was attempted but the passphrase couldn't decrypt it</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___Instead__it_looks_like_" xml:space="preserve">
+    <value>This is not a valid confirmation code.  Instead, it looks like </value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click____Perhaps_you_entered_the_wrong_thing___Confirmation_codes_" xml:space="preserve">
+    <value>.  Perhaps you entered the wrong thing?  Confirmation codes </value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_start_with__cfrm__" xml:space="preserve">
+    <value>start with "cfrm".</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_This_passphrase_is_wrong_or_does_not_belong_to_this_confirmation_code_" xml:space="preserve">
+    <value>This passphrase is wrong or does not belong to this confirmation code.</value>
+  </data>
+  <data name="Bip38ConfValidator_btnConfirm_Click_Invalid_passphrase" xml:space="preserve">
+    <value>Invalid passphrase</value>
+  </data>
 </root>

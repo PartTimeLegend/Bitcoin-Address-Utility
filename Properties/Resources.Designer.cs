@@ -299,6 +299,150 @@ namespace BtcAddress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .  Perhaps you entered the wrong thing?  Confirmation codes .
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click____Perhaps_you_entered_the_wrong_thing___Confirmation_codes_ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click____Perhaps_you_entered_the_wrong_thing___Conf" +
+                        "irmation_codes_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation code is required..
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_Confirmation_code_is_required_ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_Confirmation_code_is_required_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation code required.
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_Confirmation_code_required {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_Confirmation_code_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid confirmation code.
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_Invalid_confirmation_code {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_Invalid_confirmation_code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid passphrase.
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_Invalid_passphrase {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_Invalid_passphrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passphrase is required..
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_Passphrase_is_required_ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_Passphrase_is_required_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passphrase required.
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_Passphrase_required {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_Passphrase_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to start with &quot;cfrm&quot;..
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_start_with__cfrm__ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_start_with__cfrm__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is actually a private key.
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_This_is_actually_a_private_key {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_This_is_actually_a_private_key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is not a valid confirmation code..
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code_ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is not a valid confirmation code.  Instead, it looks like .
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___Instead__it_looks_like_ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___Inste" +
+                        "ad__it_looks_like_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is not a valid confirmation code.  It has the right prefix, but doesn&apos;t contain valid confirmation data.  Possible typo or incomplete?.
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___It_has_the_right_prefix__but_doesn_t_contain_valid_confirmation_data___Possible_typo_or_incomplete_ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___It_ha" +
+                        "s_the_right_prefix__but_doesn_t_contain_valid_confirmation_data___Possible_typo_" +
+                        "or_incomplete_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is not a valid confirmation code.  It looks like an encrypted private key.  Decryption was attempted but the passphrase couldn&apos;t decrypt it.
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___It_looks_like_an_encrypted_private_key___Decryption_was_attempted_but_the_passphrase_couldn_t_decrypt_it {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_This_is_not_a_valid_confirmation_code___It_lo" +
+                        "oks_like_an_encrypted_private_key___Decryption_was_attempted_but_the_passphrase_" +
+                        "couldn_t_decrypt_it", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This passphrase is wrong or does not belong to this confirmation code..
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_This_passphrase_is_wrong_or_does_not_belong_to_this_confirmation_code_ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_This_passphrase_is_wrong_or_does_not_belong_t" +
+                        "o_this_confirmation_code_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What you provided contains a private key, not just a confirmation. Confirmation is successful, and with this correct passphrase, you are also able to spend the funds from the address..
+        /// </summary>
+        internal static string Bip38ConfValidator_btnConfirm_Click_What_you_provided_contains_a_private_key__not_just_a_confirmation__Confirmation_is_successful__and_with_this_correct_passphrase__you_are_also_able_to_spend_the_funds_from_the_address_ {
+            get {
+                return ResourceManager.GetString("Bip38ConfValidator_btnConfirm_Click_What_you_provided_contains_a_private_key__not" +
+                        "_just_a_confirmation__Confirmation_is_successful__and_with_this_correct_passphra" +
+                        "se__you_are_also_able_to_spend_the_funds_from_the_address_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  bytes..
         /// </summary>
         internal static string Pbkdf2_Read__bytes_ {
