@@ -16,8 +16,6 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using BtcAddress.Forms;
 
@@ -40,42 +38,49 @@ namespace BtcAddress {
 
         public static BtcAddress.Forms.EscrowTools EscrowTools = null;
 
-        public static void ShowAddressUtility() {
-            AddressUtility = showForm<Form1>(AddressUtility);
+        public static void ShowAddressUtility()
+        {
+            if (AddressUtility != null) AddressUtility = ShowForm<Form1>(AddressUtility);
         }
 
-        public static void ShowBase58Calc() {
-            Base58Calc = showForm<Base58Calc>(Base58Calc);
+        public static void ShowBase58Calc()
+        {
+            if (Base58Calc != null) Base58Calc = ShowForm<Base58Calc>(Base58Calc);
         }
 
-        public static void ShowMofNcalc() {
-            MofNcalc = showForm<MofNcalc>(MofNcalc);
+        public static void ShowMofNcalc()
+        {
+            if (MofNcalc != null) MofNcalc = ShowForm<MofNcalc>(MofNcalc);
         }
 
-        public static void ShowIntermediateGen() {
-            IntermediateGen = showForm<PpecKeygen>(IntermediateGen);
+        public static void ShowIntermediateGen()
+        {
+            if (IntermediateGen != null) IntermediateGen = ShowForm<PpecKeygen>(IntermediateGen);
         }
 
-        public static void ShowKeyCombiner() {
-            KeyCombiner = showForm<KeyCombiner>(KeyCombiner);
+        public static void ShowKeyCombiner()
+        {
+            if (KeyCombiner != null) KeyCombiner = ShowForm<KeyCombiner>(KeyCombiner);
         }
 
-        public static void ShowConfValidator() {
-            ConfValidator = showForm<BtcAddress.Forms.Bip38ConfValidator>(ConfValidator);
+        public static void ShowConfValidator()
+        {
+            if (ConfValidator != null) ConfValidator = ShowForm(ConfValidator);
         }
 
-        public static void ShowKeyDecrypter() {
-            DecryptKey = showForm<BtcAddress.Forms.DecryptKey>(DecryptKey);
+        public static void ShowKeyDecrypter()
+        {
+            if (DecryptKey != null) DecryptKey = ShowForm(DecryptKey);
         }
 
-        public static void ShowEscrowTools() {
-            EscrowTools = showForm<BtcAddress.Forms.EscrowTools>(EscrowTools);
-
+        public static void ShowEscrowTools()
+        {
+            if (EscrowTools != null) EscrowTools = ShowForm(EscrowTools);
         }
 
-        private static T showForm<T>(T currentform) where T : Form, new() {
+        private static T ShowForm<T>(T currentform) where T : Form, new() {
             if (currentform == null || currentform.Visible == false) {
-                T rv = new T();
+                var rv = new T();
                 rv.Show();
                 return rv;
             } else {
@@ -93,7 +98,7 @@ namespace BtcAddress {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            Application.Run(new BtcAddress.Forms.KeyCollectionView());
+            Application.Run(new KeyCollectionView());
         }
     }
 }

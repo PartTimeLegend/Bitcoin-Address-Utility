@@ -443,6 +443,120 @@ namespace BtcAddress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Both of the key inputs have the same public key hash.  You can continue, but the results are probably going to be wrong.  You might have provided the wrong information, such as two parts from the same side of the transaction, instead of one part from each side.  Continue anyway?.
+        /// </summary>
+        internal static string KeyCombiner_btnCombine_Click_Both_of_the_key_inputs_have_the_same_public_key_hash___You_can_continue__but_the_results_are_probably_going_to_be_wrong___You_might_have_provided_the_wrong_information__such_as_two_parts_from_the_same_side_of_the_transaction__instead_of_one_part_from_each_side___Continue_anyway_ {
+            get {
+                return ResourceManager.GetString(@"KeyCombiner_btnCombine_Click_Both_of_the_key_inputs_have_the_same_public_key_hash___You_can_continue__but_the_results_are_probably_going_to_be_wrong___You_might_have_provided_the_wrong_information__such_as_two_parts_from_the_same_side_of_the_transaction__instead_of_one_part_from_each_side___Continue_anyway_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t combine.
+        /// </summary>
+        internal static string KeyCombiner_btnCombine_Click_Can_t_combine {
+            get {
+                return ResourceManager.GetString("KeyCombiner_btnCombine_Click_Can_t_combine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t combine a compressed key with an uncompressed key..
+        /// </summary>
+        internal static string KeyCombiner_btnCombine_Click_Can_t_combine_a_compressed_key_with_an_uncompressed_key_ {
+            get {
+                return ResourceManager.GetString("KeyCombiner_btnCombine_Click_Can_t_combine_a_compressed_key_with_an_uncompressed_" +
+                        "key_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t multiply two public keys.  At least one of the keys must be a private key..
+        /// </summary>
+        internal static string KeyCombiner_btnCombine_Click_Can_t_multiply_two_public_keys___At_least_one_of_the_keys_must_be_a_private_key_ {
+            get {
+                return ResourceManager.GetString("KeyCombiner_btnCombine_Click_Can_t_multiply_two_public_keys___At_least_one_of_the" +
+                        "_keys_must_be_a_private_key_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input key #1 is not a valid Public Key or Private Key Hex.
+        /// </summary>
+        internal static string KeyCombiner_btnCombine_Click_Input_key__1_is_not_a_valid_Public_Key_or_Private_Key_Hex {
+            get {
+                return ResourceManager.GetString("KeyCombiner_btnCombine_Click_Input_key__1_is_not_a_valid_Public_Key_or_Private_Ke" +
+                        "y_Hex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input key #2 is not a valid Public Key or Private Key Hex.
+        /// </summary>
+        internal static string KeyCombiner_btnCombine_Click_Input_key__2_is_not_a_valid_Public_Key_or_Private_Key_Hex {
+            get {
+                return ResourceManager.GetString("KeyCombiner_btnCombine_Click_Input_key__2_is_not_a_valid_Public_Key_or_Private_Ke" +
+                        "y_Hex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only available when combining two private keys.
+        /// </summary>
+        internal static string KeyCombiner_btnCombine_Click_Only_available_when_combining_two_private_keys {
+            get {
+                return ResourceManager.GetString("KeyCombiner_btnCombine_Click_Only_available_when_combining_two_private_keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EC Addition should not be used for two-factor storage.  Use multiplication instead. Addition is safe when employing a vanity pool to generate vanity addresses, and is required for vanity address generators to achieve GPU-accelerated performance.  For some other uses, addition is unsafe due to its reversibility, so always use multiplication instead wherever possible..
+        /// </summary>
+        internal static string KeyCombiner_linkLabel1_LinkClicked_EC_Addition_should_not_be_used_for_two_factor_storage___Use_multiplication_instead__Addition_is_safe_when_employing_a_vanity_pool_to_generate_vanity_addresses__and_is_required_for_vanity_address_generators_to_achieve_GPU_accelerated_performance___For_some_other_uses__addition_is_unsafe_due_to_its_reversibility__so_always_use_multiplication_instead_wherever_possible_ {
+            get {
+                return ResourceManager.GetString(@"KeyCombiner_linkLabel1_LinkClicked_EC_Addition_should_not_be_used_for_two_factor_storage___Use_multiplication_instead__Addition_is_safe_when_employing_a_vanity_pool_to_generate_vanity_addresses__and_is_required_for_vanity_address_generators_to_achieve_GPU_accelerated_performance___For_some_other_uses__addition_is_unsafe_due_to_its_reversibility__so_always_use_multiplication_instead_wherever_possible_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not enough valid parts were present to decode an address..
+        /// </summary>
+        internal static string MofNcalc_btnDecode_Click_Not_enough_valid_parts_were_present_to_decode_an_address_ {
+            get {
+                return ResourceManager.GetString("MofNcalc_btnDecode_Click_Not_enough_valid_parts_were_present_to_decode_an_address" +
+                        "_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of parts needed exceeds number of parts to generate..
+        /// </summary>
+        internal static string MofNcalc_btnGenerate_Clicxk_Number_of_parts_needed_exceeds_number_of_parts_to_generate_ {
+            get {
+                return ResourceManager.GetString("MofNcalc_btnGenerate_Clicxk_Number_of_parts_needed_exceeds_number_of_parts_to_gen" +
+                        "erate_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a valid private key..
+        /// </summary>
+        internal static string MofNcalc_btnGenerateSpecific_Click_Not_a_valid_private_key_ {
+            get {
+                return ResourceManager.GetString("MofNcalc_btnGenerateSpecific_Click_Not_a_valid_private_key_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This feature is experimental, a proof of concept, and the key format will probably be revised heavily before this ever makes it into production.  Don&apos;t rely on it to secure large numbers of Bitcoins.  If you use it, make sure you keep a copy of this version of the utility in case the m-of-n format is changed before being accepted as any kind of standard..
+        /// </summary>
+        internal static string MofNcalc_MofNcalc_Load_This_feature_is_experimental__a_proof_of_concept__and_the_key_format_will_probably_be_revised_heavily_before_this_ever_makes_it_into_production___Don_t_rely_on_it_to_secure_large_numbers_of_Bitcoins___If_you_use_it__make_sure_you_keep_a_copy_of_this_version_of_the_utility_in_case_the_m_of_n_format_is_changed_before_being_accepted_as_any_kind_of_standard_ {
+            get {
+                return ResourceManager.GetString(@"MofNcalc_MofNcalc_Load_This_feature_is_experimental__a_proof_of_concept__and_the_key_format_will_probably_be_revised_heavily_before_this_ever_makes_it_into_production___Don_t_rely_on_it_to_secure_large_numbers_of_Bitcoins___If_you_use_it__make_sure_you_keep_a_copy_of_this_version_of_the_utility_in_case_the_m_of_n_format_is_changed_before_being_accepted_as_any_kind_of_standard_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  bytes..
         /// </summary>
         internal static string Pbkdf2_Read__bytes_ {

@@ -25,6 +25,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Windows.Forms;
+using BtcAddress.Properties;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
@@ -42,9 +43,19 @@ namespace BtcAddress {
             InitializeComponent();
         }
 
-        private TextBox GetPartBox(int i) {
-            TextBox[] parts = new TextBox[] {txtPart1,txtPart2,txtPart3,txtPart4,txtPart5,txtPart6,txtPart7,txtPart8};
-            return parts[i];
+        private TextBox GetPartBox(int i)
+        {
+            if (txtPart1 != null && (txtPart2 != null && (txtPart3 != null && (txtPart4 != null && txtPart5 != null &&
+                                                                               (txtPart6 != null &&
+                                                                                (txtPart7 != null && txtPart8 != null))))))
+            {
+                var parts = new[]
+                    {
+                        txtPart1, txtPart2, txtPart3, txtPart4, txtPart5, txtPart6, txtPart7,
+                        txtPart8
+                    };
+                if (parts.Length > i) return parts[i];
+            }
         }
 
 
@@ -52,76 +63,85 @@ namespace BtcAddress {
 
         }
 
-        private byte[] targetPrivKey = null;
+        private byte[] _targetPrivKey = null;
 
-        private void btnGenerate_Click(object sender, EventArgs e) {
+        private void btnGenerate_Clicxk(object sender, EventArgs e) {
 
-            if (numPartsNeeded.Value > numPartsToGenerate.Value) {
-                MessageBox.Show("Number of parts needed exceeds number of parts to generate.");
+            if (numPartsNeeded != null && (numPartsToGenerate != null && numPartsNeeded.Value > numPartsToGenerate.Value)) {
+                MessageBox.Show(Resources.MofNcalc_btnGenerate_Clicxk_Number_of_parts_needed_exceeds_number_of_parts_to_generate_);
                 return;
             }
 
 
-            for (int i = 0; i < 8; i++) {
-                TextBox t = GetPartBox(i);
-                t.Text = "";
-                t.BackColor = System.Drawing.Color.White;                
+            for (var i = 0; i < 8; i++) {
+                var t = GetPartBox(i);
+                t.Text = string.Empty;
+                t.BackColor = Color.White;                
             }
 
-            MofN mn = new MofN();
+            var mn = new MofN();
 
-            if (targetPrivKey == null) {
-                mn.Generate((int)numPartsNeeded.Value, (int)numPartsToGenerate.Value);
+            if (_targetPrivKey == null) {
+                if (numPartsNeeded != null)
+                    if (numPartsToGenerate != null)
+                        mn.Generate((int)numPartsNeeded.Value, (int)numPartsToGenerate.Value);
             } else {
-                mn.Generate((int)numPartsNeeded.Value, (int)numPartsToGenerate.Value, targetPrivKey);
+                if (numPartsNeeded != null)
+                    if (numPartsToGenerate != null)
+                        mn.Generate((int)numPartsNeeded.Value, (int)numPartsToGenerate.Value, _targetPrivKey);
             }
 
-            int j = 0;
-            foreach (string kp in mn.GetKeyParts()) {
-                GetPartBox(j++).Text = kp;
+            var j = 0;
+            foreach (var kp in mn.GetKeyParts()) {
+                if (kp != null) GetPartBox(j++).Text = kp;
             }
 
-            txtPrivKey.Text = mn.BitcoinPrivateKey ?? "?";
-            txtAddress.Text = mn.BitcoinAddress ?? "?";
-
+            if (txtPrivKey != null) txtPrivKey.Text = mn.BitcoinPrivateKey ?? "?";
+            if (txtAddress != null) txtAddress.Text = mn.BitcoinAddress ?? "?";
         }
 
-        public static List<equation> solvesome(List<equation> ineq) {
+        public static List<equation> Solvesome(List<equation> ineq) {
+            if (ineq == null) throw new ArgumentNullException("ineq");
             if (ineq.Count == 1) return ineq;
 
-            List<equation> outeq = new List<equation>();
+            var outeq = new List<equation>();
 
-            for (int i = 1; i < ineq.Count; i++) {
-                outeq.Add(ineq[i].CombineAndReduce(ineq[0]));
+            for (var i = 1; i < ineq.Count; i++) {
+                if (ineq.Count > i) outeq.Add(ineq[i].CombineAndReduce(ineq[0]));
             }
             return outeq;
         }
 
         private void btnDecode_Click(object sender, EventArgs e) {
-            MofN mn = new MofN();
+            if (sender == null) throw new ArgumentNullException("sender");
+            if (e == null) throw new ArgumentNullException("e");
+            var mn = new MofN();
 
-            for (int i = 0; i < 8; i++) {
-                TextBox t = GetPartBox(i);
-                string p = t.Text.Trim();
+            for (var i = 0; i < 8; i++) {
+                var t = GetPartBox(i);
+                if (t.Text != null)
+                {
+                    var p = t.Text.Trim();
 
-                if (p == "" || (mn.PartsAccepted >= mn.PartsNeeded && mn.PartsNeeded > 0)) {
-                    t.BackColor = System.Drawing.Color.White;
-                } else {
-                    string result = mn.AddKeyPart(p);
-                    if (result == null) {
-                        t.BackColor = System.Drawing.Color.LightGreen;
+                    if (p == string.Empty || (mn.PartsAccepted >= mn.PartsNeeded && mn.PartsNeeded > 0)) {
+                        t.BackColor = Color.White;
                     } else {
-                        t.BackColor = System.Drawing.Color.Pink;
+                        var result = mn.AddKeyPart(p);
+                        if (result == null) {
+                            t.BackColor = Color.LightGreen;
+                        } else {
+                            t.BackColor = System.Drawing.Color.Pink;
+                        }
                     }
                 }
             }
 
             if (mn.PartsAccepted >= mn.PartsNeeded && mn.PartsNeeded > 0) {
                 mn.Decode();
-                txtPrivKey.Text = mn.BitcoinPrivateKey;
-                txtAddress.Text = mn.BitcoinAddress;                
+                if (txtPrivKey != null) if (mn.BitcoinPrivateKey != null) txtPrivKey.Text = mn.BitcoinPrivateKey;
+                if (txtAddress != null) if (mn.BitcoinAddress != null) txtAddress.Text = mn.BitcoinAddress;
             } else {
-                MessageBox.Show("Not enough valid parts were present to decode an address.");
+                MessageBox.Show(Resources.MofNcalc_btnDecode_Click_Not_enough_valid_parts_were_present_to_decode_an_address_);
             }
 
 
@@ -130,28 +150,30 @@ namespace BtcAddress {
         }
 
         private void btnGenerateSpecific_Click(object sender, EventArgs e) {
+            if (sender == null) throw new ArgumentNullException("sender");
+            if (e == null) throw new ArgumentNullException("e");
 
             KeyPair k = null;
 
-            try {
-                k = new KeyPair(txtPrivKey.Text);
-                targetPrivKey = k.PrivateKeyBytes;
-
-            } catch (Exception) {
-                MessageBox.Show("Not a valid private key.");
+            try
+            {
+                if (txtPrivKey != null) k = new KeyPair(txtPrivKey.Text);
+                _targetPrivKey = k.PrivateKeyBytes;
             }
-
-            btnGenerate_Click(sender, e);
-            targetPrivKey = null;
+            catch (Exception) {
+                MessageBox.Show(Resources.MofNcalc_btnGenerateSpecific_Click_Not_a_valid_private_key_);
+            }
+            btnGenerate_Clicxk(sender, e);
+            _targetPrivKey = null;
             
         }
 
-        private void MofNcalc_Load(object sender, EventArgs e) {
-            MessageBox.Show("This feature is experimental, a proof of concept, and the key format will probably be revised heavily before this ever makes it into production.  Don't rely on it to secure large numbers of Bitcoins.  If you use it, " +
-                "make sure you keep a copy of this version of the utility in case the m-of-n format is changed before being accepted as any kind of standard.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+        private void MofNcalc_Load(object sender, EventArgs e)
+        {
+            if (sender == null) throw new ArgumentNullException("sender");
+            if (e == null) throw new ArgumentNullException("e");
+            MessageBox.Show(Resources.MofNcalc_MofNcalc_Load_This_feature_is_experimental__a_proof_of_concept__and_the_key_format_will_probably_be_revised_heavily_before_this_ever_makes_it_into_production___Don_t_rely_on_it_to_secure_large_numbers_of_Bitcoins___If_you_use_it__make_sure_you_keep_a_copy_of_this_version_of_the_utility_in_case_the_m_of_n_format_is_changed_before_being_accepted_as_any_kind_of_standard_, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-
     }
 
 
