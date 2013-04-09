@@ -19,3 +19,5 @@ This project has two dependencies:
 2. ThoughtWorks QRCode DLL
 
 Get BouncyCastle from http://www.bouncycastle.org/csharp/  (just the compiled assembly is fine).
+
+[![Build Status](https://travis-ci.org/PartTimeLegend/Bitcoin-Address-Utility.png)](https://travis-ci.org/PartTimeLegend/Bitcoin-Address-Utility)
