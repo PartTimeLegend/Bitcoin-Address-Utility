@@ -20,4 +20,5 @@ This project has two dependencies:
 
 Get BouncyCastle from http://www.bouncycastle.org/csharp/  (just the compiled assembly is fine).
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/837fb2a18d0c4d9c824dc5cded42b1f8)](https://www.codacy.com/app/PartTimeLegend/Bitcoin-Address-Utility?utm_source=github.com&utm_medium=referral&utm_content=PartTimeLegend/Bitcoin-Address-Utility&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/PartTimeLegend/Bitcoin-Address-Utility.png)](https://travis-ci.org/PartTimeLegend/Bitcoin-Address-Utility)
